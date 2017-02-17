@@ -8,6 +8,5 @@ function Start () {
 }
 
 function LateUpdate () {
-    print(player.transform.position.x);
     transform.position = player.transform.position + offset;
 }
