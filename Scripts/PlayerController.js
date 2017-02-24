@@ -7,13 +7,13 @@ public class PlayerController extends MonoBehaviour {
     var speed : float = 30.0;
     var count : int;
     var countText : UI.Text;
-    function SetCountText () {
-        countText.text = "Count:" + count.ToString();
-    }
+    var winText : UI.Text;
+
     function Start() {
         rb = GetComponent.<Rigidbody>();
         count = 0;
         SetCountText ();
+        winText.text = "";
     }
 
     function FixedUpdate () {
@@ -27,6 +27,12 @@ public class PlayerController extends MonoBehaviour {
             other.gameObject.SetActive (false);
             count = count + 1;
             SetCountText ();
+        }
+    }
+    function SetCountText () {
+        countText.text = "Count:" + count.ToString();
+        if (count >= 13){
+            winText.text = "You win";
         }
     }
 
