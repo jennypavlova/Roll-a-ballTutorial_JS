@@ -1,12 +1,19 @@
 ﻿#pragma strict
+import UnityEngine.UI;
 
 
 public class PlayerController extends MonoBehaviour {
-    var rb: Rigidbody;
+    var rb : Rigidbody;
     var speed : float = 30.0;
-
+    var count : int;
+    var countText : UI.Text;
+    function SetCountText () {
+        countText.text = "Count:" + count.ToString();
+    }
     function Start() {
         rb = GetComponent.<Rigidbody>();
+        count = 0;
+        SetCountText ();
     }
 
     function FixedUpdate () {
@@ -18,6 +25,9 @@ public class PlayerController extends MonoBehaviour {
     function OnTriggerEnter (other : Collider) {
         if(other.gameObject.CompareTag ("Pick Up")){
             other.gameObject.SetActive (false);
+            count = count + 1;
+            SetCountText ();
         }
     }
+
 }
